@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>synch</title>
+
+    <style>
+      html, body {
+          margin: 0;
+          padding: 0;
+      }
+      html {
+          background-color: #111;
+          color: #FFF;
+      }
+      .editor {
+          font-family: monospace;
+
+          display: flex;
+          align-items: stretch;
+          flex-direction: column;
+      }
+
+      .editor-input {
+          outline: none;
+          background-color: #222;
+          color: #FFF;
+          transition: color 0.3s ease;
+      }
+
+      .editor-input.editor-input-error {
+          color: #F44;
+          transition: color 0s ease;
+      }
+
+      .editor-input:after {
+          /* Firefox contenteditable blurring workaround. */
+          /* `content: ''` also works, but `\200B` allows it to also keep height when empty. */
+          content: '\200B';
+      }
+
+      .editor-arg-hint {
+          color: rgba(255, 255, 255, 40%);
+          font-size: 90%;
+          vertical-align: middle;
+      }
+      .editor-function {
+          color: #FA4;
+          font-weight: bold;
+      }
+
+      .editor-value-variable, .editor-variable-decl {
+          color: #AEF;
+      }
+
+      .editor-value-number {
+          color: #FAF;
+      }
+
+      .editor-comment {
+          color: #F66;
+          font-style: italic;
+      }
+
+      .editor-functions-li:before {
+          content: "- ";
+          color: #666;
+          font-weight: regular;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="editor">
+      <div>Available functions:</div>
+    </div>
+    <script src="functions.js"></script>
+    <script src="evaluation.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
