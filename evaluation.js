@@ -121,7 +121,6 @@ class BytecodeBuilder {
     contextPush(which, value) {
         const last = this.contextStack[this.contextStack.length - 1].slice();
         last[which] = value;
-        console.log('BBB', value);
         this.contextStack.push(last);
     }
 
@@ -236,10 +235,6 @@ class BytecodeBuilder {
 
         bc.emit = value_info[this.final].register;
 
-        for (const instr of bc.instructions) {
-            console.log(instr[0] + ' = ' + ['const', 'add', 'sub', 'mul', 'div', 'sin', 'abs', 'wrap', 'lt', 'delta', 'load', 'store'][instr[1]] + ' ' + instr[2].join(' '));
-        }
-
         bc.registers_count = registers.length;
         bc.storage_count = this.last_storage;
 
@@ -304,7 +299,6 @@ try {
             this.port.addEventListener('message', (e) => { this.message(e) });
             this.port.start();
 
-            console.log('foobaraz');
 
             this.bytecode = null;
             this.storage = null;
@@ -312,7 +306,6 @@ try {
 
         message(e) {
             if (e.data.type == 'update-bytecode') {
-                console.log('upd');
                 this.bytecode = Bytecode.deserialize(e.data.bytecode);
             }
         }

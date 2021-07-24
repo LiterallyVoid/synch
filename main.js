@@ -5,7 +5,6 @@ let processor = null;
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 async function amain() {
     await ctx.audioWorklet.addModule('evaluation.js');
-    console.log('foobar');
 
     processor = new AudioWorkletNode(ctx, 'processor');
     processor.connect(ctx.destination);
@@ -469,7 +468,6 @@ function play_(editor) {
     try {
         bytecode = compile(editor.element.lastElementChild);
     } catch (e) {
-        console.log(e);
         return false;
     }
 
@@ -487,7 +485,6 @@ let last_evaled = null;
 
 function play(editor) {
     if (!play_(editor)) {
-        console.log('playing last evaled');
         play_(last_evaled);
     }
 }
