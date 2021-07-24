@@ -318,7 +318,7 @@ try {
             const output = outputs[0];
             for (let i = 0; i < output[0].length; i++) {
                 let value = this.bytecode.evaluate(null, this, 1 / 44100);
-                output[0][i] = value * 0.3;
+                output[0][i] = value * 0.1;
             }
             return true;
         }
